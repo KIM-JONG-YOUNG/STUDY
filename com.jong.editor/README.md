@@ -25,7 +25,7 @@
 
 # 사용하지 않는 폴더 및 이미지 삭제  
 **1.JSP			:**  	
-- yyyyMMddHHmmss 형식으로 폴더명을 입력   
+- yyyyMMddHHmmss 형식으로 폴더명을 입력  
 **2.Controller	:**	  
 - 데이터베이스에서 폴더명 조회  
 	- 사용여부 = N  
