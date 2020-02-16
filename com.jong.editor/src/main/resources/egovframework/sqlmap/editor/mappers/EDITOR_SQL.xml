@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.editor.service.impl.EditorMapper">
+
+	<select id="selectUploadFolderList" parameterType="Map" resultType="egovMap">
+		SELECT	UPLOAD_FOLDER	
+						, HTML
+						, USE_YN
+		FROM		EDITOR	
+		WHERE	1 = 1
+			<if test="useYn != null and useYn != ''">
+			AND 	USE_YN = #{useYn}
+			</if>
+			<if test="delDate != null and delDate != ''">
+			AND 	#{delDate} > UPLOAD_FOLDER
+			</if>
+	</select>
+		
+	<insert id="insertUploadFolderOne" parameterType="Map">
+		INSERT INTO EDITOR (
+			 UPLOAD_FOLDER
+			, HTML
+			, USE_YN
+		) VALUES (
+			#{uploadFolder}
+			, #{editorData}
+			, 'N'	)
+	</insert>
+
+	<update id="updateUploadFolderOne" parameterType="Map">
+		UPDATE EDITOR SET 
+		USE_YN = 'Y'
+		WHERE UPLOAD_FOLDER = #{uploadFolder}
+	</update>
+
+	<delete id="deleteFolderList" parameterType="Map">
+		DELETE	FROM EDITOR
+		WHERE	#{delDate} > UPLOAD_FOLDER 
+		AND 		USE_YN = 'N'
+	</delete>
+
+</mapper>
